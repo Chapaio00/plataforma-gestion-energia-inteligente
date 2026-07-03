@@ -16,26 +16,38 @@ public class Bateria {
         this.identificador = identificador;
         this.energia = energia;
     }
-
+    public String getIdentificador(){
+        return this.identificador;
+    }
     public void agregarObservador(SistemaInteresado sistema){
         observadores.add(sistema);
     }
-    
-
+    public void eliminarObservador(SistemaInteresado sistema){
+        observadores.remove(sistema);
+    }
+    public void notifivarObservadores(String tipoMovimiento, double cantidad){
+        for(SistemaInteresado sistema : observadores){
+            sistema.notificar(this, tipoMovimiento, cantidad);
+        }
+    }
     public Integer getEnergia(){
         return this.energia;
     }
 
     public void cargarEnergia(Integer energia){
         this.energia = this.energia + energia;
+        notifivarObservadores("Carga", energia);
     }
     public void consumirEnergia(Integer energia) throws LimiteDeReservaException{
         Integer resultado = this.energia - energia;
-        if(resultado<ReservaMinima){
+        if(resultado < ReservaMinima){
             throw new LimiteDeReservaException("La bateria no puede ser inferior a la reserva!");
         }
         this.energia = this.energia - energia;
+        notifivarObservadores("Consumo", energia);
+
     }
+
 
     
 }
