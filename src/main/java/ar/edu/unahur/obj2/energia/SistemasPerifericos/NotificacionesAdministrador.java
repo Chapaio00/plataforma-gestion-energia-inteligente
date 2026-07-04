@@ -15,7 +15,7 @@ public class NotificacionesAdministrador implements SistemaInteresado {
 
 
     @Override
-    public void notificar(Bateria bateria, String tipoMovimiento, double cantidad) {
+    public void notificar(Bateria bateria, String tipoMovimiento, Integer cantidad) {
         if(!bateria.getIdentificador().equals(identificadorBateriaACargo)){
             return;
         }

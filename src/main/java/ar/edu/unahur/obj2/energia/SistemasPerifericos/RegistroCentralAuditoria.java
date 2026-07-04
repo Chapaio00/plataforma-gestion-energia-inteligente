@@ -10,8 +10,8 @@ public class RegistroCentralAuditoria implements SistemaInteresado {
     private List<String> registros = new ArrayList<>();
 
     @Override
-    public void notificar(Bateria bateria, String tipoMovimiento, double cantidad) {
-        String registro = bateria.getIdentificador() + "-" + "tipoMovimiento" + "-" + "cantidad";
+    public void notificar(Bateria bateria, String tipoMovimiento, Integer cantidad) {
+        String registro = bateria.getIdentificador() + "-" + tipoMovimiento + "-" + cantidad;
         registros.add(registro);
     }
 

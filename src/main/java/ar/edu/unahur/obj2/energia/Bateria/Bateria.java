@@ -25,7 +25,7 @@ public class Bateria {
     public void eliminarObservador(SistemaInteresado sistema){
         observadores.remove(sistema);
     }
-    public void notifivarObservadores(String tipoMovimiento, double cantidad){
+    public void notifivarObservadores(String tipoMovimiento, Integer cantidad){
         for(SistemaInteresado sistema : observadores){
             sistema.notificar(this, tipoMovimiento, cantidad);
         }
@@ -33,7 +33,9 @@ public class Bateria {
     public Integer getEnergia(){
         return this.energia;
     }
-
+    public List<SistemaInteresado> listaObservadores(){
+        return observadores;   //agregada para testeos
+    }
     public void cargarEnergia(Integer energia){
         this.energia = this.energia + energia;
         notifivarObservadores("Carga", energia);
