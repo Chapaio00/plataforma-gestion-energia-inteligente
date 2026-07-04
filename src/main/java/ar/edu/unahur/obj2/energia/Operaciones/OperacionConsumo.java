@@ -1,6 +1,5 @@
 package ar.edu.unahur.obj2.energia.Operaciones;
 
-import javax.management.RuntimeErrorException;
 
 import ar.edu.unahur.obj2.energia.Bateria.Bateria;
 import ar.edu.unahur.obj2.energia.Exceptions.LimiteDeReservaException;
@@ -20,11 +19,11 @@ public class OperacionConsumo implements OperacionTransferencia {
     }
 
     @Override
-    public void ejecutar() {
+    public void ejecutar() throws LimiteDeReservaException {
         try {
             bateria.consumirEnergia(energia);
         } catch (LimiteDeReservaException e) {
-            throw new RuntimeErrorException(null, "La bateria no puede ser inferior a la reserva!" );
+            throw new LimiteDeReservaException("Excedido el limite de reserva");
         }
     }
 

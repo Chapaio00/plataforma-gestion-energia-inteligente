@@ -36,3 +36,4 @@ public class OperacionCargaTest {
         assertEquals(100, bateria.getEnergia());
     }
 }
+

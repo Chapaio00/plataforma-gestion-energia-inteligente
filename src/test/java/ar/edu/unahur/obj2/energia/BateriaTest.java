@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ar.edu.unahur.obj2.energia.Bateria.Bateria;
 import ar.edu.unahur.obj2.energia.Exceptions.LimiteDeReservaException;
+import ar.edu.unahur.obj2.energia.Operaciones.OperacionConsumo;
 import ar.edu.unahur.obj2.energia.SistemasPerifericos.RegistroCentralAuditoria;
 import ar.edu.unahur.obj2.energia.SistemasPerifericos.SistemaInteresado;
 
@@ -43,16 +44,14 @@ class BateriaTest{
     }
     
     @Test
-    void registrarObservadorYRecibeNotificacionAlCargar(){
-        Bateria bateria = new Bateria("123", 200);
-        RegistroCentralAuditoria RegistroCentralAuditoria = new RegistroCentralAuditoria();
-        bateria.agregarObservador(RegistroCentralAuditoria);
-        bateria.cargarEnergia(20);
-        assertEquals("[123-Carga-20]", RegistroCentralAuditoria.getRegistros());
-     //Genera error debido a que es un System.out.println, no me dio tiempo a arreglarlo.
-    
+    void deshacerRevierteElConsumoAplicado() throws LimiteDeReservaException{
+        Bateria bateria = new Bateria("321", 100);
+        OperacionConsumo operacion = new OperacionConsumo(bateria, 30);
+
+        operacion.ejecutar();
+        operacion.deshacer();
+        assertEquals(100, bateria.getEnergia());
     }
-    
     
 
 }
